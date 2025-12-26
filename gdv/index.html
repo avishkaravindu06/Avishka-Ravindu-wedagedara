@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avishka Online Market | Herbal Products</title>
+    
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: #f8faf9; color: #333; overflow-x: hidden; }
+        
+        /* Navigation */
+        nav { 
+            background: #2c3e50; 
+            padding: 10px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 2000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            height: 70px; 
+        }
+        
+        .left-logo { display: flex; align-items: center; flex: 1; }
+        .logo-img { height: 50px; }
+
+        /* Absolute Center Alignment */
+        .center-brand { 
+            position: absolute; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        }
+        .logo-text { 
+            color: #FFD700; 
+            font-size: 22px; 
+            font-weight: bold; 
+            text-decoration: none; 
+            white-space: nowrap;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .profile-img-nav { 
+            width: 48px; 
+            height: 48px; 
+            border-radius: 50%; 
+            border: 2px solid #FFD700; 
+            object-fit: cover;
+        }
+
+        .nav-links { display: flex; align-items: center; justify-content: flex-end; flex: 1; }
+        .nav-links a { color: white; margin: 0 12px; text-decoration: none; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .video-nav-btn { background: #ff0000; color: white !important; padding: 6px 15px; border-radius: 5px; font-size: 13px; }
+
+        /* Slider */
+        .slider-container { position: relative; width: 100%; height: 65vh; overflow: hidden; background: #000; }
+        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; display: flex; justify-content: center; align-items: center; z-index: 1; }
+        .slide.active { opacity: 1; z-index: 2; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(40%); }
+        .slide-content { position: absolute; text-align: center; color: white; z-index: 10; width: 100%; }
+        .slide-content h2 { font-size: 40px; margin: 0; font-weight: 800; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .slider-btn { background: #25D366; color: white; padding: 12px 35px; text-decoration: none; border-radius: 30px; display: inline-block; font-weight: bold; margin-top: 15px; }
+
+        /* Products Grid */
+        .container { padding: 40px 15px; display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; align-items: flex-start; }
+        .card { background: #ffffff; width: 300px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee; transition: 0.3s; }
+        .img-container { width: 100%; height: 240px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 15px; box-sizing: border-box; }
+        .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .card-content { padding: 15px; text-align: center; flex-grow: 1; }
+        .price { color: #e74c3c; font-weight: bold; font-size: 22px; margin: 10px 0; }
+        .read-more-btn { background: transparent; border: 2px solid #25D366; color: #25D366; padding: 6px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; margin-bottom: 10px; }
+        .more-info { display: none; padding: 15px; text-align: left; background: #fdfdfd; font-size: 14px; border-top: 1px solid #f1f1f1; color: #555; line-height: 1.6; }
+        .btn-buy { display: block; background: #25D366; color: #fff; text-align: center; padding: 14px; text-decoration: none; font-weight: bold; }
+
+        /* Footer */
+        footer { background: #2c3e50; color: white; padding: 40px 20px; text-align: center; }
+        .social-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .social-link { color: white; text-decoration: none; font-weight: bold; padding: 10px 20px; border-radius: 30px; font-size: 13px; }
+        .fb-btn { background: #1877F2; }
+        .ig-btn { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+        .tt-btn { background: #000000; border: 1px solid #fff; }
+        .wa-btn { background: #25D366; }
+
+        @media (max-width: 950px) { 
+            nav { flex-direction: column; height: auto; padding: 15px; gap: 15px; }
+            .center-brand { position: static; transform: none; order: 1; }
+            .left-logo { order: 0; justify-content: center; }
+            .nav-links { order: 2; justify-content: center; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="left-logo">
+            <img src="images-removebg-preview.png" alt="Logo" class="logo-img">
+        </div>
+
+        <div class="center-brand">
+            <a href="#" class="logo-text">Avishka Online Market</a>
+            <img src="avishka.png" alt="Avishka" class="profile-img-nav">
+        </div>
+
+        <div class="nav-links">
+            <a href="#">මුල් පිටුව</a>
+            <a href="#products">නිෂ්පාදන</a>
+            <a href="videos.html" class="video-nav-btn">Video </a>
+            <a href="#contact">Contact Us</a>
+        </div>
+    </nav>
+
+    <div class="slider-container">
+        <div class="slide active"><img src="banner1.jpg" alt="Banner 1"><div class="slide-content"><h2>ස්වභාවික සුවය නිවසටම</h2><a href="#products" class="slider-btn">නිෂ්පාදන බලන්න</a></div></div>
+        <div class="slide"><img src="banner2.jpg" alt="Banner 2"><div class="slide-content"><h2>නිරෝගී දිවියකට මග</h2><a href="#products" class="slider-btn">දැන්ම බලන්න</a></div></div>
+    </div>
+
+    <div class="container" id="products">
+        <div class="card">
+            <div class="img-container"><img src="download.jpg" alt="Osuwita"></div>
+            <div class="card-content">
+                <h3>ඔසුවිට (Osuwita)</h3>
+                <p class="price">Rs. 1,600</p>
+                <button class="read-more-btn" onclick="toggleInfo('info1')">Read More</button>
+            </div>
+            <div id="info1" class="more-info">✓ 100% ස්වභාවික දේශීය ඖෂධ සාරය. <br> ✓ සිරුරේ ප්‍රතිශක්තිය උපරිම කරයි.</div>
+            <a href="https://wa.me/94702300612" class="btn-buy" target="_blank">Order on WhatsApp</a>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="Suwatha.webp" alt="Suwatha"></div>
+            <div class="card-content">
+                <h3>සුවතා පස්පංගුව</h3>
+                <p class="price">Rs. 1,680</p>
+                <button class="read-more-btn" onclick="toggleInfo('info2')">Read More</button>
+            </div>
+            <div id="info2" class="more-info">✓ මානසික හා කායික විඩාව ක්ෂණිකව දුරු කරයි.</div>
+            <a href="https://wa.me/94702300612" class="btn-buy" target="_blank">Order on WhatsApp</a>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="images (3).jpg" alt="Garssy"></div>
+            <div class="card-content">
+                <h3>Garssy Herbal Candy</h3>
+                <p class="price">Rs. 2,500</p>
+                <button class="read-more-btn" onclick="toggleInfo('info3')">Read More</button>
+            </div>
+            <div id="info3" class="more-info">✓ සිරුරේ අතිරික්ත මේදය දහනය කරයි.</div>
+            <a href="https://wa.me/94702540044" class="btn-buy" target="_blank">Order on WhatsApp</a>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="images (1).jpg" alt="Diabecare"></div>
+            <div class="card-content">
+                <h3>Diabecare Herbal Tea</h3>
+                <p class="price">Rs. 2,900</p>
+                <button class="read-more-btn" onclick="toggleInfo('info4')">Read More</button>
+            </div>
+            <div id="info4" class="more-info">✓ රුධිරයේ සීනි මට්ටම පාලනය කරයි.</div>
+            <a href="https://wa.me/94702540044" class="btn-buy" target="_blank">Order on WhatsApp</a>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="images (2).jpg" alt="Bliss Tea"></div>
+            <div class="card-content">
+                <h3>Premium Bliss Tea</h3>
+                <p class="price">Rs. 3,200</p>
+                <button class="read-more-btn" onclick="toggleInfo('info5')">Read More</button>
+            </div>
+            <div id="info5" class="more-info">✓ සිරුරේ විෂ ඉවත් කර සම පැහැපත් කරයි.</div>
+            <a href="https://wa.me/94702540044" class="btn-buy" target="_blank">Order on WhatsApp</a>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div style="margin-bottom: 25px;">
+            <p>කජුවැටියවත්ත, ගල්වාරම, අලව්ව, Sri Lanka.</p>
+        </div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/AvishkaRavze" class="social-link fb-btn" target="_blank">Facebook</a>
+            <a href="https://www.instagram.com/avishka_ravindu__/" class="social-link ig-btn" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com/@avishka_ravindu__" class="social-link tt-btn" target="_blank">TikTok</a>
+            <a href="https://wa.me/94702540044" class="social-link wa-btn" target="_blank">WhatsApp</a>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function showNextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(showNextSlide, 3000);
+
+        function toggleInfo(id) {
+            const infoBox = document.getElementById(id);
+            infoBox.style.display = (infoBox.style.display === "block") ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
